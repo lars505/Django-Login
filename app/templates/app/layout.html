@@ -12,18 +12,26 @@
 <body>
     <header>
         <nav>
+            <a class="logo" href="{% url 'index' %}">Login / <span>Register</span></a>
             <ul>
                 <li><a href="{% url 'index' %}">Home</a> </li>
                 <li><a href="{% url 'register' %}">Register</a> </li>
-                <li><a href="{% url 'register' %}">Login</a> </li>
+                <li><a href="{% url 'login' %}">Login</a> </li>
                 <li><a href="{% url 'logout' %}">Logout</a> </li>
                
             </ul>
         </nav>
     </header>
-    hola
-    {% block contenido %}
+  
+    <div class="container">
+        {% if messages %}
+            {% for message in messages %}
+                {{message}}
+            {% endfor %}
+      {% endif %}
+        {% block contenido %}
 
-    {% endblock %}
+        {% endblock %}
+    </div>
 </body>
 </html>

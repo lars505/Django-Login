@@ -2,4 +2,40 @@
 
 {% block title %} {% endblock %}
 {% block contenido %}
+
+<div class="login">
+    <div class="form-container">
+        
+        <div class="title">Register</div>
+        
+        <form action="{% url 'register' %}" class="form" method="post">
+            {% csrf_token %}
+            <div>
+                <label class="label" for="name">First Name</label>
+                <input type="text" id="name" name="name" placeholder="Angel lars" class="input input-name">
+
+                <label class="label" for="name">Last Name</label>
+                <input type="text" id="name" name="lastname" placeholder="Angel lars" class="input input-name">
+
+                <label class="label" for="name">Username</label>
+                <input type="text" id="name" name="username" placeholder="Lars505" class="input input-name">
+
+                <label class="label" for="email">Email address</label>
+                <input type="text" id="email" name="email" placeholder="*********" class="input input-email">
+
+                <label class="label" for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="*********" class="input input-password">
+
+                <label class="label" for="password">Confirmation</label>
+                <input type="password" id="password" name="password2" placeholder="*********" class="input input-password">
+
+            <button type="submit" class="primary-button"> Create account </button>
+            </div>
+            
+        </form>
+
+        
+    </div>
+</div>
+
 {% endblock %}

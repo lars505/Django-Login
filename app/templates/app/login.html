@@ -2,4 +2,24 @@
 
 {% block title %} {% endblock %}
 {% block contenido %}
+
+<div class="login">
+    <div class="form-container">
+        
+        <div class="title">Login</div>
+        {% csrf_token %}
+        <form action="{% url 'login' %}" class="form" method="post">
+            <div>
+                <label class="label" for="name">Username</label>
+                <input type="text" id="name" name="username" placeholder="Lars505" class="input input-name">
+
+                <label class="label" for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="*********" class="input input-password">
+
+                <button type="submit" class="primary-button"> Log in </button>
+            </div>
+        </form>
+    </div>
+</div>
+
 {% endblock %}
