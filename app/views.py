@@ -1,7 +1,9 @@
 import email
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+
 
 # Create your views here.
 
@@ -35,7 +37,22 @@ def register(request):
     return render(request, 'app/register.html')
 
 def login_view(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        if username == '' or password == '':
+            messages.success(request, 'Ingrese usuario y contraseña.')
+            return redirect(to='login')
+        user = authenticate(username = username, password = password)
+        if user is not None:
+            login(request, user)
+            messages.success(request, 'Bienvenido!.')
+            return redirect(to="index")
+        else:
+            messages.success(request, 'Usuario o contraseña incorrecta.')
+            return redirect(to='login')
     return render(request, 'app/login.html')
 
 def logout_view(request):
+    logout(request)
     return render(request, 'app/login.html')

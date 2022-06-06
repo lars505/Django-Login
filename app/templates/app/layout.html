@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/0cc62f5196.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     
     <title>{% block title %}{% endblock %}</title>
@@ -15,9 +16,15 @@
             <a class="logo" href="{% url 'index' %}">Login / <span>Register</span></a>
             <ul>
                 <li><a href="{% url 'index' %}">Home</a> </li>
-                <li><a href="{% url 'register' %}">Register</a> </li>
-                <li><a href="{% url 'login' %}">Login</a> </li>
-                <li><a href="{% url 'logout' %}">Logout</a> </li>
+                {% if user.is_authenticated %}
+                    <li class="username" ><i class="fa fa-user" aria-hidden="true"></i> | {{user.username}}  </li>
+                
+                    <li><a href="{% url 'logout' %}">Logout</a> </li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a> </li>
+                    
+                    <li><a href="{% url 'register' %}">Register</a> </li>
+                {% endif %}
                
             </ul>
         </nav>
@@ -28,10 +35,12 @@
             {% for message in messages %}
                 {{message}}
             {% endfor %}
-      {% endif %}
+        {% endif %}
+
         {% block contenido %}
 
         {% endblock %}
+        
     </div>
 </body>
 </html>

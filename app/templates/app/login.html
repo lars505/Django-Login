@@ -7,8 +7,9 @@
     <div class="form-container">
         
         <div class="title">Login</div>
-        {% csrf_token %}
+        
         <form action="{% url 'login' %}" class="form" method="post">
+            {% csrf_token %}
             <div>
                 <label class="label" for="name">Username</label>
                 <input type="text" id="name" name="username" placeholder="Lars505" class="input input-name">
